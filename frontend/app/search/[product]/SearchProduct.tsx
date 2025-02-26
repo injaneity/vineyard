@@ -42,7 +42,7 @@ export default function SearchProduct() {
   const [isClient, setIsClient] = useState(false)
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm)
   const [productImage, setProductImage] = useState(
-    "https://img.lazcdn.com/g/p/303c7d35af6fefd40c2cee2309a50886.jpg_200x200q80.jpg_.webp",
+    "https://media.karousell.com/media/photos/products/2025/2/26/shiseido_sunscreen_1740531547_b9c48f91_progressive.jpg",
   )
   const [alertsOn, setAlertsOn] = useState(false)
 
@@ -50,20 +50,20 @@ export default function SearchProduct() {
     setIsClient(true)
     // Inject the search term into the endpoint URL
     const fetchData = async () => {
-      try {
-        const res = await fetch(`http://127.0.0.1:8000/scrape/${encodeURIComponent(searchTerm)}`)
-        const data = await res.json()
+      // try {
+      //   const res = await fetch(`http://127.0.0.1:8000/scrape/${encodeURIComponent(searchTerm)}`)
+      //   const data = await res.json()
 
-        // Get the first image URL from the scraped_data array provided by the endpoint.
-        if (data?.lazada_results?.scraped_data?.length && data.lazada_results.scraped_data[0].image) {
-          setProductImage(data.lazada_results.scraped_data[0].image)
-        } else {
-          // Fallback: use product_type_image if scraped_data is empty or no image exists.
-          setProductImage(data.lazada_results.product_type_image)
-        }
-      } catch (error) {
-        console.error("Error fetching search results:", error)
-      }
+      //   // Get the first image URL from the scraped_data array provided by the endpoint.
+      //   if (data?.lazada_results?.scraped_data?.length && data.lazada_results.scraped_data[0].image) {
+      //     setProductImage(data.carousell_results.scraped_data[0].image)
+      //   } else {
+      //     // Fallback: use product_type_image if scraped_data is empty or no image exists.
+      //     setProductImage(data.lazada_results.product_type_image)
+      //   }
+      // } catch (error) {
+      //   console.error("Error fetching search results:", error)
+      // }
     }
     fetchData()
   }, [searchTerm])
@@ -213,11 +213,7 @@ export default function SearchProduct() {
             <Card className="p-6">
               <h2 className="mb-4 text-xl font-bold">Vineyard AI Insights</h2>
               <p className="text-muted-foreground">
-                Birch Moisturizing Sunscreen is a <span className="font-medium">dual-function skincare product</span>{" "}
-                designed to provide broad-spectrum sun protection while delivering{" "}
-                <span className="font-medium">deep hydration</span>. Infused with{" "}
-                <span className="font-medium">natural birch sap extract</span>, it offers a{" "}
-                <span className="font-medium">lightweight, non-greasy</span> formula suitable for daily use.
+                This snapshot reveals a competitive sunscreen market with varied price points, ranging from budget-friendly options like Skin1004 at S$3 to premium products like Dr's Secret at S$103. Popular brands such as Shiseido, La Roche-Posay, and Innisfree are present, indicating strong brand recognition and established customer bases to compete with. The prevalence of "Buyer Protection" badges suggests a focus on trust and security, which could be a key differentiator for sellers in this space.
               </p>
             </Card>
           </div>

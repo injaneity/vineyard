@@ -42,7 +42,7 @@ export default function SearchProduct() {
   const [isClient, setIsClient] = useState(false)
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm)
   const [productImage, setProductImage] = useState(
-    "https://media.karousell.com/media/photos/products/2025/2/26/shiseido_sunscreen_1740531547_b9c48f91_progressive.jpg",
+    "https://media.karousell.com/media/photos/products/2024/12/23/naruko_tea_tree_antiacne_sunsc_1734916912_3107674c_progressive_thumbnail.jpg",
   )
   const [alertsOn, setAlertsOn] = useState(false)
 

@@ -52,7 +52,7 @@
   
       try {
         // Create a promise that resolves after 2 seconds
-        const minimumLoadingTime = new Promise((resolve) => setTimeout(resolve, 100000))
+        const minimumLoadingTime = new Promise((resolve) => setTimeout(resolve, 2000))
   
         // Run both the API call and the timer in parallel
         await Promise.all([scrape(inputValue), minimumLoadingTime])

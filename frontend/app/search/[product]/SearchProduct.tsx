@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { PriceGraph } from "@/components/price-graph";
 
+import { useParams } from "next/navigation";
+
 // Sample pricing data
 const shopeeData = [
   { date: "2023-01-01", price: 18.5 },
@@ -36,9 +38,9 @@ const carousellData = [
 ];
 
 export default function SearchProduct() {
-  const searchParams = useSearchParams();
+  const params = useParams();
   // Retrieve the query parameter "q"; if not provided, fall back to "sunscreen"
-  const initialSearchTerm = searchParams.get("q") || "sunscreen";
+  const initialSearchTerm = params.product;
   const [isClient, setIsClient] = useState(false);
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const [productImage, setProductImage] = useState(

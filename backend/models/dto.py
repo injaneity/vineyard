@@ -3,9 +3,9 @@ from typing import Optional
 
 class OnboardDTO(BaseModel):
     username: str 
-    shopee_url: Optional[HttpUrl] = ""  
-    lazada_url: Optional[HttpUrl] = ""
-    carousell_url: Optional[HttpUrl] = ""
+    shopee_url: Optional[str] = ""  
+    lazada_url: Optional[str] = ""
+    carousell_url: Optional[str] = ""
 
 class ScrapeDTO(BaseModel):
     username: str 

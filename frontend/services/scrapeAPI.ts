@@ -30,7 +30,10 @@ export interface AllScrapeResults {
 export const scrape = async (product_name: string): Promise<AllScrapeResults> => {
   try {
     const response = await axiosClient.post<AllScrapeResults>(
-      `/scrape`, { product: product_name }
+      `/scrape`, { 
+        product: product_name,
+        username: "user" 
+      }
     );
     return response.data;
   } catch (error) {

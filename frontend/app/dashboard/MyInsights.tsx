@@ -10,6 +10,7 @@ import {
   Legend,
   Line,
 } from "recharts";
+import { DashboardInsightData } from "@/types";
 
 interface PriceData {
   date: string;
@@ -31,7 +32,7 @@ const COLORS = ["#ff5722", "#2196f3", "#4caf50", "#9c27b0", "#ff9800", "#00bcd4"
  * Merges an object of product price data arrays into one array.
  * Each element corresponds to a date and contains fields for each product's price.
  */
-function mergeData(data: InsightsData): any[] {
+function mergeData(data: DashboardInsightData): any[] {
   const merged: Record<string, any> = {};
 
   for (const product in data) {

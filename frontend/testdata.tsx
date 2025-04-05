@@ -80,7 +80,7 @@ export const testdata = [
 ];
 
 // testData.ts
-import { ProfileScrapeResponse } from "@/types";
+import { DashboardInsightData, ProductInsightData, ProfileScrapeResponse, RecentActivityInfo } from "@/types";
 
 export const testProfileScrapeResponse: ProfileScrapeResponse = {
   shopee: [
@@ -193,7 +193,7 @@ export const testProfileScrapeResponse: ProfileScrapeResponse = {
   ]
 };
 
-export const testDashboardInsightData = {
+export const testDashboardInsightData:DashboardInsightData = {
     "product1": [
       { date: "2025-01-01", price: 10 },
       { date: "2025-01-02", price: 14 },
@@ -251,7 +251,7 @@ export const testDashboardInsightData = {
   }
   
 
-export const testRecentActivityData = [
+export const testRecentActivityData:RecentActivityInfo[] = [
     { activity: 'Scraped carousell for "flowers"', date: "24/01/2025" },
     { activity: 'Detected price change for "flowers"', date: "25/01/2025" },
 ]

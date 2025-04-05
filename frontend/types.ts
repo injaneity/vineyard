@@ -21,3 +21,12 @@ export type ProductInsightData = {
     date: string;
     price: number;
 }
+
+export interface DashboardInsightData {
+    [product: string]: ProductInsightData[];
+}
+
+export type RecentActivityInfo = {
+    activity: string;
+    date: string;
+}

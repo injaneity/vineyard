@@ -10,14 +10,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-
-interface ActivityLog {
-  activity: string
-  date: string
-}
+import { RecentActivityInfo } from "@/types"
 
 interface RecentActivityProps {
-  data: ActivityLog[]
+  data: RecentActivityInfo[]
 }
 
 export function RecentActivity({ data }: RecentActivityProps) {

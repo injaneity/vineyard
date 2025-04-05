@@ -16,3 +16,8 @@ export type ProfileScrapeResponse = {
     lazada: ProductCardInfo[];
     carousell: ProductCardInfo[];
 }
+
+export type ProductInsightData = {
+    date: string;
+    price: number;
+}

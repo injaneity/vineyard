@@ -85,9 +85,9 @@ def scrape(scrape_request: ScrapeDTO):
     # return {"lazada_results": lazada_results,  "carousell_results": carousell_results, "insights_data": insights_data}
 
 @app.post("/insights")
-def get_insights(request: Request):
+async def get_insights(request: Request):
     # Get the scraped data from the request body
-    data = request.json()
+    data = await request.json()
 
     # Generate AI insights using the provided scraped data
     insights = generate_product_insights({

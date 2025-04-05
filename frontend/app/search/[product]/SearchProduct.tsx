@@ -42,36 +42,54 @@ export default function SearchProduct() {
   const [isClient, setIsClient] = useState(false);
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const [productImage, setProductImage] = useState(
-    "https://img.lazcdn.com/g/p/303c7d35af6fefd40c2cee2309a50886.jpg_200x200q80.jpg_.webp"
+    ""
   );
   const [alertsOn, setAlertsOn] = useState(false);
+  const [insights, setInsights] = useState(""); // Add state for insights
 
+  // In the destination page component
   useEffect(() => {
     setIsClient(true);
-    // Inject the search term into the endpoint URL
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          `http://127.0.0.1:8000/scrape/${encodeURIComponent(searchTerm)}`
-        );
-        const data = await res.json();
-
-        // Get the first image URL from the scraped_data array provided by the endpoint.
-        if (
-          data?.lazada_results?.scraped_data?.length &&
-          data.lazada_results.scraped_data[0].image
-        ) {
-          setProductImage(data.lazada_results.scraped_data[0].image);
-        } else {
-          // Fallback: use product_type_image if scraped_data is empty or no image exists.
-          setProductImage(data.lazada_results.product_type_image);
-        }
-      } catch (error) {
-        console.error("Error fetching search results:", error);
+    const data = localStorage.getItem('scrapedData');
+    if (data) {
+      const parsedData = JSON.parse(data);
+      if (parsedData?.carousell_results?.scraped_data?.length > 0) {
+        const firstImage = parsedData.carousell_results.scraped_data[0].image;
+        setProductImage(firstImage);
       }
-    };
-    // fetchData()
-  }, [searchTerm]);
+      if (parsedData?.insights) {
+        setInsights(parsedData.insights);
+      }
+      
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   setIsClient(true);
+  //   // Inject the search term into the endpoint URL
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await fetch(
+  //         `http://127.0.0.1:8000/scrape/${encodeURIComponent(searchTerm)}`
+  //       );
+  //       const data = await res.json();
+
+  //       // Get the first image URL from the scraped_data array provided by the endpoint.
+  //       if (
+  //         data?.lazada_results?.scraped_data?.length &&
+  //         data.lazada_results.scraped_data[0].image
+  //       ) {
+  //         setProductImage(data.lazada_results.scraped_data[0].image);
+  //       } else {
+  //         // Fallback: use product_type_image if scraped_data is empty or no image exists.
+  //         setProductImage(data.lazada_results.product_type_image);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching search results:", error);
+  //     }
+  //   };
+  //   // fetchData()
+  // }, [searchTerm]);
 
   // Toggle alerts on/off
   const toggleAlerts = () => {
@@ -226,17 +244,7 @@ export default function SearchProduct() {
             <Card className="p-6">
               <h2 className="mb-4 text-xl font-bold">Vineyard AI Insights</h2>
               <p className="text-muted-foreground">
-                Birch Moisturizing Sunscreen is a{" "}
-                <span className="font-medium">
-                  dual-function skincare product
-                </span>{" "}
-                designed to provide broad-spectrum sun protection while
-                delivering <span className="font-medium">deep hydration</span>.
-                Infused with{" "}
-                <span className="font-medium">natural birch sap extract</span>,
-                it offers a{" "}
-                <span className="font-medium">lightweight, non-greasy</span>{" "}
-                formula suitable for daily use.
+              {insights || "Loading..."}
               </p>
             </Card>
           </div>

@@ -53,18 +53,18 @@ export default function Search() {
 
     try {
       // Create a promise that resolves after 2 seconds
-      const minimumLoadingTime = new Promise((resolve) =>
-        setTimeout(resolve, 100000)
-      );
+      // const minimumLoadingTime = new Promise((resolve) =>
+      //   setTimeout(resolve, 100000)
+      // );
 
       // First run scrape and wait for its results
       const scrapedData = await scrape(inputValue);
-
-      // Then run insights with the scraped data
-      const insights = await getInsights(inputValue, scrapedData);
+      localStorage.setItem('scrapedData', JSON.stringify(scrapedData));
+      // // Then run insights with the scraped data
+      // const insights = await getInsights(inputValue, scrapedData);
 
       // Wait for minimum loading time
-      await minimumLoadingTime;
+      // await minimumLoadingTime;
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {

@@ -25,7 +25,7 @@ export default function OnboardProductsPage({ products }: OnboardFormPageProps) 
     <div className="space-y-1 max-w-[70vw]">
         <div className="flex justify-between items-center">
             <div className="text-xl font-semibold">Here are your listings we found:</div>
-            <Button onClick={() => router.push("/search")}>Go to Dashboard</Button>
+            <Button onClick={() => router.push("/dashboard")}>Go to Dashboard</Button>
         </div>
       {/* Shopee Carousel */}
       <section >

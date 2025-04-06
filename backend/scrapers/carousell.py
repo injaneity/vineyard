@@ -141,7 +141,8 @@ def onboard_carousell(profile_url: str):
         
         page.wait_for_selector("div[data-testid^='listing-card-']", timeout=10000)
 
-        while True:
+        MAX_PAGES = 1
+        for _ in range(MAX_PAGES):
             show_more_button = page.locator("button", has_text="View more")
             if show_more_button.count() == 0:
                 break

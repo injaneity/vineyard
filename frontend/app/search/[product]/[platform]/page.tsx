@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { ProductCardInfo } from "@/types";
 import ProductCard from "@/components/ui/ProductCard";
-import { testdata } from "@/testdata";
 import { useParams } from "next/navigation";
 
 export default function SearchResults() {
@@ -11,6 +10,9 @@ export default function SearchResults() {
     const productQuery = params.product; // Access the [query] parameter
     const productPlatform = params.platform;
     const [products, setProducts] = useState<ProductCardInfo[]>([]);
+    
+    // Decode the URL-encoded product query
+    const decodedProductQuery = productQuery ? decodeURIComponent(productQuery.toString()) : '';
 
     useEffect(() => {
         const data = localStorage.getItem('scrapedData');
@@ -22,7 +24,6 @@ export default function SearchResults() {
             const platformKey = `${productPlatform.toLowerCase()}_results`;
             const platformData = parsedData[platformKey]?.scraped_data || [];
             console.log(parsedData);
-            
             
             // Map platform data to ProductCardInfo format
             const formattedProducts = platformData.map((item: any) => ({
@@ -40,16 +41,14 @@ export default function SearchResults() {
 
     return (
         <div>
-            <div className="w-full h-[50px] p-8 text-lg">Search results for <span className="font-bold">{productQuery}</span> from <span className="font-bold">{productPlatform}</span>:</div>
+            <div className="w-full h-[50px] p-8 text-lg">Search results for <span className="font-bold">{decodedProductQuery}</span> from <span className="font-bold">{productPlatform}</span>:</div>
             <div className="flex flex-wrap justify-center items-center gap-4">
                 {products.length > 0 ? 
                   products.map((item, index) => (
                     <ProductCard key={index} {...item} />
                   ))
                   :
-                  testdata.map((item, index) => (
-                    <ProductCard key={index} {...item} />
-                  ))
+                  <div className="text-gray-500 text-lg">No results found.</div>
                 }
             </div>
         </div>
